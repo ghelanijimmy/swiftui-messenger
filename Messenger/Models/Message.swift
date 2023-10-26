@@ -11,3 +11,9 @@ enum MessageType: String {
     case sent
     case received
 }
+
+struct Message {
+    let text: String
+    let tytpe: MessageType
+    let created: String
+}
