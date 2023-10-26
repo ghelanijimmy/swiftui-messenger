@@ -8,17 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		96FE0E022AEA0FE80003C715 /* MessengerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E012AEA0FE80003C715 /* MessengerApp.swift */; };
-		96FE0E042AEA0FE80003C715 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E032AEA0FE80003C715 /* ContentView.swift */; };
+		96FE0E042AEA0FE80003C715 /* ConversationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E032AEA0FE80003C715 /* ConversationListView.swift */; };
 		96FE0E062AEA0FEC0003C715 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96FE0E052AEA0FEC0003C715 /* Assets.xcassets */; };
 		96FE0E092AEA0FEC0003C715 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96FE0E082AEA0FEC0003C715 /* Preview Assets.xcassets */; };
+		96FE0E132AEA110C0003C715 /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E122AEA110C0003C715 /* SigninView.swift */; };
+		96FE0E152AEA11190003C715 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E142AEA11190003C715 /* SignUpView.swift */; };
+		96FE0E172AEA11270003C715 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E162AEA11270003C715 /* ChatView.swift */; };
+		96FE0E192AEA11340003C715 /* ChatRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E182AEA11340003C715 /* ChatRowView.swift */; };
+		96FE0E1B2AEA11400003C715 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E1A2AEA11400003C715 /* SearchView.swift */; };
+		96FE0E1D2AEA114D0003C715 /* SendButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E1C2AEA114D0003C715 /* SendButtonView.swift */; };
+		96FE0E1F2AEA11630003C715 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E1E2AEA11630003C715 /* Message.swift */; };
+		96FE0E212AEA11730003C715 /* AppStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FE0E202AEA11730003C715 /* AppStateModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		96FE0DFE2AEA0FE80003C715 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96FE0E012AEA0FE80003C715 /* MessengerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerApp.swift; sourceTree = "<group>"; };
-		96FE0E032AEA0FE80003C715 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		96FE0E032AEA0FE80003C715 /* ConversationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListView.swift; sourceTree = "<group>"; };
 		96FE0E052AEA0FEC0003C715 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96FE0E082AEA0FEC0003C715 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		96FE0E122AEA110C0003C715 /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		96FE0E142AEA11190003C715 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		96FE0E162AEA11270003C715 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		96FE0E182AEA11340003C715 /* ChatRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRowView.swift; sourceTree = "<group>"; };
+		96FE0E1A2AEA11400003C715 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		96FE0E1C2AEA114D0003C715 /* SendButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButtonView.swift; sourceTree = "<group>"; };
+		96FE0E1E2AEA11630003C715 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		96FE0E202AEA11730003C715 /* AppStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +67,9 @@
 		96FE0E002AEA0FE80003C715 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
-				96FE0E012AEA0FE80003C715 /* MessengerApp.swift */,
-				96FE0E032AEA0FE80003C715 /* ContentView.swift */,
-				96FE0E052AEA0FEC0003C715 /* Assets.xcassets */,
+				96FE0E112AEA103C0003C715 /* Resources */,
+				96FE0E102AEA10370003C715 /* Models */,
+				96FE0E0F2AEA10300003C715 /* Views */,
 				96FE0E072AEA0FEC0003C715 /* Preview Content */,
 			);
 			path = Messenger;
@@ -65,6 +81,38 @@
 				96FE0E082AEA0FEC0003C715 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		96FE0E0F2AEA10300003C715 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				96FE0E032AEA0FE80003C715 /* ConversationListView.swift */,
+				96FE0E122AEA110C0003C715 /* SigninView.swift */,
+				96FE0E142AEA11190003C715 /* SignUpView.swift */,
+				96FE0E162AEA11270003C715 /* ChatView.swift */,
+				96FE0E182AEA11340003C715 /* ChatRowView.swift */,
+				96FE0E1A2AEA11400003C715 /* SearchView.swift */,
+				96FE0E1C2AEA114D0003C715 /* SendButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		96FE0E102AEA10370003C715 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				96FE0E1E2AEA11630003C715 /* Message.swift */,
+				96FE0E202AEA11730003C715 /* AppStateModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		96FE0E112AEA103C0003C715 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96FE0E012AEA0FE80003C715 /* MessengerApp.swift */,
+				96FE0E052AEA0FEC0003C715 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +185,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96FE0E042AEA0FE80003C715 /* ContentView.swift in Sources */,
+				96FE0E1D2AEA114D0003C715 /* SendButtonView.swift in Sources */,
+				96FE0E152AEA11190003C715 /* SignUpView.swift in Sources */,
+				96FE0E042AEA0FE80003C715 /* ConversationListView.swift in Sources */,
+				96FE0E1F2AEA11630003C715 /* Message.swift in Sources */,
+				96FE0E172AEA11270003C715 /* ChatView.swift in Sources */,
+				96FE0E1B2AEA11400003C715 /* SearchView.swift in Sources */,
+				96FE0E192AEA11340003C715 /* ChatRowView.swift in Sources */,
 				96FE0E022AEA0FE80003C715 /* MessengerApp.swift in Sources */,
+				96FE0E132AEA110C0003C715 /* SigninView.swift in Sources */,
+				96FE0E212AEA11730003C715 /* AppStateModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
