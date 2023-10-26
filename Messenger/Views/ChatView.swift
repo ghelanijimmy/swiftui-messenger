@@ -10,16 +10,21 @@ import SwiftUI
 struct ChatView: View {
     // MARK: - PROPERTIES
     @State var message: String = ""
+    let otherUsername: String
+    
+    init(otherUsername: String) {
+        self.otherUsername = otherUsername
+    }
     
     // MARK: - BODYdf
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                ChatRowView(type: .received)
+                ChatRowView(type: .received, text: "Hello World")
                     .padding(3)
-                ChatRowView(type: .sent)
+                ChatRowView(type: .sent, text: "Hello World")
                     .padding(3)
-                ChatRowView(type: .received)
+                ChatRowView(type: .received, text: "Hello World")
                     .padding(3)
             } //: SCROLL VIEW
             
@@ -33,13 +38,13 @@ struct ChatView: View {
             } //: HSTACK
             .padding()
         } //: VSTACK
-        .navigationTitle("Samantha")
+        .navigationTitle(otherUsername)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
     NavigationStack {
-        ChatView()
+        ChatView(otherUsername: "other user")
     }
 }
