@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+struct CustomField: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 7))
+    }
+}
+
 struct ChatView: View {
     // MARK: - PROPERTIES
     @State var message: String = ""
@@ -31,9 +40,7 @@ struct ChatView: View {
             // FIELD SEND BUTTON
             HStack {
                 TextField("Message...", text: $message)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 7))
+                    .modifier(CustomField())
                 SendButtonView(text: $message)
             } //: HSTACK
             .padding()

@@ -10,6 +10,9 @@ import SwiftUI
 struct ConversationListView: View {
     // MARK: - PROPERTIES
     let usernames = ["Joe", "Jill", "Bob"]
+    @State var otherUsername: String = ""
+    @State var showChat: Bool = false
+    @EnvironmentObject var model: AppStateModel
     
     // MARK: - FUNCTIONS
     func signOut() {
@@ -51,18 +54,31 @@ struct ConversationListView: View {
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        SearchView()
+                        SearchView(){ username in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                self.otherUsername = username
+                                self.showChat = true
+                            }
+                        }
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }
 
                 }
             }
+            .navigationDestination(isPresented: $showChat) {
+                if !otherUsername.isEmpty {
+                    ChatView(otherUsername: otherUsername)
+                }
+            }
+            .fullScreenCover(isPresented: $model.showingSignIn, content: {
+                SigninView()
+            })
         } //: NAVIGATION STACK
-        .padding()
     }
 }
 
 #Preview {
     ConversationListView()
+        .environmentObject(AppStateModel())
 }
