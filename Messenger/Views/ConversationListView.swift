@@ -16,7 +16,7 @@ struct ConversationListView: View {
     
     // MARK: - FUNCTIONS
     func signOut() {
-        
+        model.signOut()
     }
     
     // MARK: - BODY

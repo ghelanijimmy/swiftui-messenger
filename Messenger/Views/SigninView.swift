@@ -42,8 +42,13 @@ struct SigninView: View {
                 VStack {
                     TextField("Username", text: $username)
                         .modifier(CustomField())
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                    
                     SecureField("Password", text: $password)
                         .modifier(CustomField())
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
                     
                     Button(action: {
                         signIn()
