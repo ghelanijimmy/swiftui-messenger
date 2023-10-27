@@ -11,8 +11,9 @@ struct SearchView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) var dismiss
     @State var text: String = ""
-    let usernames = ["Julia"]
+    @State var usernames: [String] = []
     let completion: (String) -> Void
+    @EnvironmentObject var model: AppStateModel
     
     init(completion: @escaping ((String) -> Void)) {
         self.completion = completion
@@ -23,9 +24,16 @@ struct SearchView: View {
         VStack {
             TextField("Username", text: $text)
                 .modifier(CustomField())
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
             
             Button("Search") {
-                
+                guard !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+                    return
+                }
+                model.searchUsers(with: text) { users in
+                    self.usernames = users
+                }
             }
             
             List {
@@ -57,5 +65,6 @@ struct SearchView: View {
 #Preview {
     NavigationStack {
         SearchView(){username in }
+            .environmentObject(AppStateModel())
     }
 }

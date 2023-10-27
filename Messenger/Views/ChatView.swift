@@ -19,6 +19,7 @@ struct CustomField: ViewModifier {
 struct ChatView: View {
     // MARK: - PROPERTIES
     @State var message: String = ""
+    @EnvironmentObject var model: AppStateModel
     let otherUsername: String
     
     init(otherUsername: String) {
@@ -29,12 +30,10 @@ struct ChatView: View {
     var body: some View {
         VStack {
             ScrollView(.vertical) {
-                ChatRowView(type: .received, text: "Hello World")
-                    .padding(3)
-                ChatRowView(type: .sent, text: "Hello World")
-                    .padding(3)
-                ChatRowView(type: .received, text: "Hello World")
-                    .padding(3)
+                ForEach(model.messages, id: \.self) {message in
+                    ChatRowView(type: message.type, text: message.text)
+                        .padding(3)
+                }
             } //: SCROLL VIEW
             
             // FIELD SEND BUTTON
@@ -47,11 +46,16 @@ struct ChatView: View {
         } //: VSTACK
         .navigationTitle(otherUsername)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear(perform: {
+            model.otherUsername = otherUsername
+            model.observeChat()
+        })
     }
 }
 
 #Preview {
     NavigationStack {
         ChatView(otherUsername: "other user")
+            .environmentObject(AppStateModel())
     }
 }

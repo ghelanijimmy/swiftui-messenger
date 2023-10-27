@@ -12,8 +12,8 @@ enum MessageType: String {
     case received
 }
 
-struct Message {
+struct Message: Hashable {
     let text: String
-    let tytpe: MessageType
-    let created: String
+    let type: MessageType
+    let created: Date
 }

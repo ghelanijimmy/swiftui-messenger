@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ConversationListView: View {
     // MARK: - PROPERTIES
-    let usernames = ["Joe", "Jill", "Bob"]
     @State var otherUsername: String = ""
     @State var showChat: Bool = false
     @EnvironmentObject var model: AppStateModel
@@ -23,7 +22,7 @@ struct ConversationListView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                ForEach(usernames, id: \.self) {name in
+                ForEach(model.conversations, id: \.self) {name in
                     NavigationLink {
                         ChatView(otherUsername: name)
                     } label: {
@@ -74,6 +73,13 @@ struct ConversationListView: View {
             .fullScreenCover(isPresented: $model.showingSignIn, content: {
                 SigninView()
             })
+            .onAppear {
+                guard model.auth.currentUser != nil else {
+                    return
+                }
+                
+                model.getConversations()
+            }
         } //: NAVIGATION STACK
     }
 }

@@ -19,6 +19,9 @@ class AppStateModel: ObservableObject {
     @Published var conversations: [String] = []
     @Published var messages: [Message] = []
     var otherUsername = ""
+    var conversationListener: ListenerRegistration?
+    var chatListener: ListenerRegistration?
+    
     let database = Firestore.firestore()
     let auth = Auth.auth()
     
@@ -34,7 +37,18 @@ class AppStateModel: ObservableObject {
 // Search
 extension AppStateModel {
     func searchUsers(with name: String, completion: @escaping (_ users: [String]) -> Void) {
-        
+        database.collection("users").getDocuments { snapshot, error in
+            guard let usernames = snapshot?.documents.compactMap({ $0.documentID }), error == nil else {
+                completion([])
+                return
+            }
+            
+            print(usernames)
+            
+            let filtered = usernames.filter {$0.lowercased().hasPrefix(name.lowercased())}
+            
+            completion(filtered)
+        }
     }
 }
 
@@ -42,21 +56,61 @@ extension AppStateModel {
 extension AppStateModel {
     func getConversations() {
         // LISTEN FOR CONVERSATIONS
+        conversationListener = database.collection("users")
+            .document(currentUsername)
+            .collection("chats")
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let usernames = snapshot?.documents.compactMap({ $0.documentID }), error == nil else {
+                    print(error?.localizedDescription ?? "Couldnt get users")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self?.conversations = usernames
+                }
+            }
     }
 }
 
 // GET / SEND MESSAGES
 extension AppStateModel {
     func observeChat() {
-        
+        createConversation()
+        chatListener = database.collection("users")
+            .document(currentUsername)
+            .collection("chats")
+            .document(otherUsername)
+            .collection("messages")
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let objects = snapshot?.documents.compactMap({ $0.data() }), error != nil else {
+                    print(error?.localizedDescription ?? "Couldnt get users")
+                    return
+                }
+                
+                let messages = objects.compactMap { object in
+                    Message(text: object["text"] as? String ?? "", type: object["sender"] as? String == self?.currentUsername ? .sent : .received, created: DateFormatter().date(from: object["created"] as? String ?? "") ?? Date())
+                }
+                
+                DispatchQueue.main.async {
+                    self?.messages = messages
+                }
+            }
     }
     
     func sendMessage(text: String) {
         
     }
     
-    func createConversationIfNeeded() {
+    func createConversation() {
+        database.collection("users")
+            .document(currentUsername)
+            .collection("chats")
+            .document(otherUsername).setData(["created" : "true"])
         
+        database.collection("users")
+            .document(otherUsername)
+            .collection("chats")
+            .document(currentUsername).setData(["created" : "true"])
     }
 }
 
